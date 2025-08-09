@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('amount')->nullable();
             $table->string('status')->nullable();
             $table->string('branch_name')->nullable();
+            $table->string('remarks')->nullable();
+            $table->string('cash_type')->nullable();
             $table->string('created_by')->nullable();
             $table->string('ref_id')->nullable();
             $table->timestamps();

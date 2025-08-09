@@ -13,21 +13,20 @@ return new class extends Migration
     {
         Schema::create('supplier__ledgers', function (Blueprint $table) {
             $table->id();
-            $table->string('data')->nullable();
-            $table->string('remarks')->nullable();
+            $table->string('date')->nullable();
             $table->string('mode')->nullable();
             $table->string('due_amount')->nullable();
-            $table->string('opening_balance')->nullable();
+            $table->string('purchase_id')->nullable();
+            $table->string('payment_id')->nullable();
             $table->string('purchase_amount')->nullable();
-            $table->string('payment_amount')->nullable();
             $table->string('status')->nullable();
+            $table->string('unit_price')->nullable();
             $table->string('created_by')->nullable();
-            $table->string('ref_id')->nullable();
             $table->string('catagory')->nullable();
             $table->string('supplier_name')->nullable();
             $table->string('item_name')->nullable();
             $table->string('quantity')->nullable();
-            $table->string('unit_price')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

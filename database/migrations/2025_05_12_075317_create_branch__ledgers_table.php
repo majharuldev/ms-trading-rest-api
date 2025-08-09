@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('branch__ledgers', function (Blueprint $table) {
             $table->id();
             $table->string('date')->nullable();
+            $table->string('trip_id')->nullable();
+            $table->string('purchase_id')->nullable();
+            $table->string('payment_rec_id')->nullable();
+            $table->string('accounts_id')->nullable();
             $table->string('remarks')->nullable();
             $table->string('mode')->nullable();
-            $table->string('destination')->nullable();
+            $table->string('unload_point')->nullable();
             $table->string('trip_expense')->nullable();
-            $table->string('due')->nullable();
+            $table->string('due_amount')->nullable();
             $table->string('cash_in')->nullable();
             $table->string('cash_out')->nullable();
             $table->string('ref')->nullable();

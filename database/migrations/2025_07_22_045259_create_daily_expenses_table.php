@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
-            $table->id();
-            $table->string('employee_id')->nullable();
+        Schema::create('daily_expenses', function (Blueprint $table) {
+           $table->id();
             $table->string('date')->nullable();
-            $table->string('present')->nullable();
-            $table->string('absent')->nullable();
-            $table->string('status')->nullable();
-            $table->string('ref_id')->nullable();
+            $table->string('paid_to')->nullable();
+            $table->string('pay_amount')->nullable();
+            $table->string('payment_category')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('daily_expenses');
     }
 };

@@ -9,27 +9,41 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('customer_ledgers', function (Blueprint $table) {
-            $table->id();
-            $table->string('customer_name');
-            $table->string('bill_date');
-            $table->string('woring_date');
-            $table->string('vehicle_no');
-            $table->string('qty');
-            $table->string('load_point');
-            $table->string('unload_point');
-            $table->string('bill_amount');
-            $table->string('vat');
-            $table->string('total_amount');
-            $table->string('due_amount');
-            $table->string('status');
-            $table->string('created_by');
-            $table->string('ref_id');
-            $table->timestamps();
-        });
-    }
+   public function up(): void
+{
+    Schema::create('customer_ledgers', function (Blueprint $table) {
+        $table->id();
+        $table->string('customer_name')->nullable();
+        $table->string('bill_date')->nullable();
+        $table->string('woring_date')->nullable();
+        $table->string('vehicle_no')->nullable();
+        $table->string('qty')->nullable();
+        $table->string('load_point')->nullable();
+        $table->string('unload_point')->nullable();
+        $table->string('bill_amount')->nullable();
+        $table->string('vat')->nullable();
+        $table->string('total_amount')->nullable();
+        $table->string('due_amount')->nullable();
+        $table->string('status')->nullable();
+        $table->string('chalan')->nullable();
+        $table->string('fuel_cost')->nullable();
+        $table->string('body_cost')->nullable();
+        $table->string('created_by')->nullable();
+        $table->string('payment_rec_id')->nullable();
+        $table->string('do')->nullable();
+        $table->string('co')->nullable();
+        $table->string('delar_name')->nullable();
+        $table->string('masking')->nullable();
+        $table->string('unload_charge')->nullable();
+        $table->string('extra_fare')->nullable();
+        $table->string('vehicle_mode')->nullable();
+        $table->string('no_of_trip')->nullable();
+        $table->string('per_truck_rent')->nullable();
+        $table->string('goods')->nullable();
+        $table->timestamps();
+    });
+}
+
 
     /**
      * Reverse the migrations.

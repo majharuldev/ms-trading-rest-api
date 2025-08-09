@@ -45,7 +45,7 @@ return new class extends Migration
             $table->string('driver_commission')->nullable();
             $table->string('road_cost')->nullable();
             $table->string('food_cost')->nullable();
-            $table->string('total_expense')->nullable();
+            $table->string('total_exp')->nullable();
             $table->string('trip_rent')->nullable();
             $table->string('advance')->nullable();
             $table->string('due_amount')->nullable();
@@ -58,7 +58,8 @@ return new class extends Migration
             $table->string('police_cost')->nullable();
             $table->string('driver_adv')->nullable();
             $table->string('chada')->nullable();
-            $table->string('labour_cost')->nullable();
+            $table->string('labor')->nullable();
+             $table->string('status')->nullable();
             $table->timestamps();
         });
     }

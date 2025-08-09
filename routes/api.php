@@ -2,10 +2,11 @@
 
 use App\Models\Payment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Auth, Route};
+use App\Http\Controllers\UserController;
 
+use Illuminate\Support\Facades\{Auth, Route};
 use App\Http\Controllers\API\Authentication\AuthController;
-use App\Http\Controllers\{RentController, AccountController, PaymentController, CustomerController, StockProductController, AttendanceController, AdvanceSalaryController, BranchLedgerController, CustomerLedgerController, DriverController, DriverLedgerController, EmployeeController, LeaveController, OfficeController, VehicleController, TripController, PartsController, PaymentRecivedController, PurchaseController, StockOutProductController, SupplierLedgerController, SupplyController, VendorController};
+use App\Http\Controllers\{RentController, AccountController, PaymentController, CustomerController, StockProductController, AttendanceController, AdvanceSalaryController, BranchLedgerController, CustomerLedgerController, DailyExpenseController, DriverController, DriverLedgerController, EmployeeController, HelperController, LeaveController, OfficeController, VehicleController, TripController, PartsController, PaymentRecivedController, PurchaseController, RoleController, StockOutProductController, SupplierLedgerController, SupplyController, VendorBillController, VendorController, VendorLedgerController};
 
 // Get Authenticated User
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
@@ -18,6 +19,17 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
 });
+
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/users', 'index');
+    Route::post('/users', 'store');
+    Route::get('/users/{id}', 'show');
+    Route::put('/users/{id}', 'update');
+    Route::delete('/users/delete/{id}', 'destroy');
+});
+
+
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -48,6 +60,7 @@ Route::prefix('trip')->controller(TripController::class)->group(function () {
     Route::post('create', 'store');
     Route::get('show/{id}', 'show');
     Route::post('update/{id}', 'update');
+    Route::post('update/bill/{id}', 'Bill');
     Route::delete('delete/{id}', 'destroy');
 });
 
@@ -179,7 +192,7 @@ Route::prefix('supplierLedger')->controller(SupplierLedgerController::class)->gr
     Route::get('list', 'index');
     Route::post('create', 'store');
     Route::get('show/{id}', 'show');
-    Route::post('update/{id}', 'update');
+    Route::post('update/{ref_id}', 'update');
     Route::delete('delete/{id}', 'destroy');
 });
 //Payment
@@ -215,4 +228,57 @@ Route::prefix('driverLedger')->controller(DriverLedgerController::class)->group(
     Route::get('show/{id}', 'show');
     Route::post('update/{id}', 'update');
     Route::delete('delete/{id}', 'destroy');
+});
+// permission
+Route::prefix('permission')->controller(RoleController::class)->group(function () {
+    Route::get('list', 'index');
+    Route::post('create', 'store');
+    Route::get('show/{id}', 'show');
+    Route::post('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+});
+
+// role
+Route::prefix('role')->controller(RoleController::class)->group(function () {
+    Route::get('list', 'AllRole');
+    Route::post('create', 'AddRole');
+    Route::get('show/{id}', 'showRole');
+    Route::post('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+
+    Route::get('add/role/permission', 'AddRolesPermission');
+});
+
+// expense
+Route::prefix('expense')->name('daily.expense.')->controller(DailyExpenseController::class)->group(function () {
+    Route::get('/list', 'index')->name('list');
+    Route::post('/create', 'store')->name('store');
+    Route::get('/{id}', 'show')->name('show');
+    Route::post('/update/{id}', 'update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('destroy');
+});
+
+
+// vendor_bill
+Route::prefix('vendorBill')->name('daily.expense.')->controller(VendorBillController::class)->group(function () {
+    Route::get('/list', 'index')->name('list');
+    Route::post('/create', 'store')->name('store');
+    Route::get('/{id}', 'show')->name('show');
+    Route::post('/update/{id}', 'update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('destroy');
+});
+
+// vendor ledger
+Route::prefix('vendorLedger')->controller(VendorLedgerController::class)->group(function () {
+    Route::get('/list', 'index')->name('list');
+});
+
+
+// helper
+Route::prefix('helper')->controller(HelperController::class)->group(function () {
+    Route::get('/list', 'index')->name('list');
+    Route::post('/create', 'store')->name('store');
+    Route::get('/{id}', 'show')->name('show');
+    Route::post('/update/{id}', 'update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('destroy');
 });

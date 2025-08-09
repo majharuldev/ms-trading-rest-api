@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('driver_ledgers', function (Blueprint $table) {
             $table->id();
             $table->string('date')->nullable();
-            $table->string('load_pint')->nullable();
+            $table->string('driver_name')->nullable();
+            $table->string('trip_id')->nullable();
+            $table->string('load_point')->nullable();
             $table->string('unload_point')->nullable();
-            $table->string('commission')->nullable();
-            $table->string('advanced')->nullable();
+            $table->string('driver_commission')->nullable();
+            $table->string('driver_adv')->nullable();
             $table->string('parking_cost')->nullable();
             $table->string('night_guard')->nullable();
             $table->string('toll_cost')->nullable();

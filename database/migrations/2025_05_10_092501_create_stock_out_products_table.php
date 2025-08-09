@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('date')->nullable();
             $table->string('product_category')->nullable();
+            $table->string('purchase_id')->nullable();
             $table->string('product_name')->nullable();
             $table->string('quantity')->nullable();
             $table->string('vehicle_name')->nullable();
             $table->string('driver_name')->nullable();
-            $table->string('current_stock')->nullable();
+            $table->string('stock_in')->nullable();
+            $table->string('stock_out')->nullable();
+            $table->string('total_stock')->nullable();
             $table->string('ref_id')->nullable();
             $table->timestamps();
         });

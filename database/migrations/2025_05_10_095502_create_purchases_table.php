@@ -13,21 +13,23 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+            $table->string('date')->nullable();
             $table->string('supplier_name')->nullable();
             $table->string('category')->nullable();
             $table->string('item_name')->nullable();
             $table->string('quantity')->nullable();
             $table->string('unit_price')->nullable();
-            $table->string('total')->nullable();
+            $table->string('purchase_amount')->nullable();
             $table->string('bill_image')->nullable();
-            $table->string('date')->nullable();
             $table->string('remarks')->nullable();
-            $table->string('ref_no')->nullable();
             $table->string('driver_name')->nullable();
+            $table->string('branch_name')->nullable();
             $table->string('vehicle_no')->nullable();
+            $table->string('priority')->nullable();
+            $table->string('validity')->nullable();
             $table->string('status')->nullable();
             $table->string('created_by')->nullable();
-            $table->string('ref_id')->nullable();
+          
             $table->timestamps();
         });
     }

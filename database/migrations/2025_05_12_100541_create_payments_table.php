@@ -16,17 +16,19 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->string('item_name')->nullable();
             $table->string('supplier_name')->nullable();
+            $table->string('purchase_id')->nullable();
             $table->string('category')->nullable();
             $table->string('quantity')->nullable();
             $table->string('unit_price')->nullable();
             $table->string('total_amount')->nullable();
-            $table->string('main_amount')->nullable();
             $table->string('due_amount')->nullable();
+            $table->string('driver_name')->nullable();
+            $table->string('vehicle_no')->nullable();
             $table->string('remarks')->nullable();
             $table->string('status')->nullable();
             $table->string('branch_name')->nullable();
             $table->string('created_by')->nullable();
-            $table->string('ref_id')->nullable();
+
             $table->timestamps();
         });
     }

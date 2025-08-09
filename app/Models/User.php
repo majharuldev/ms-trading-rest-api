@@ -3,29 +3,26 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Models\Permission as ModelsPermission;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'phone',
-        'email',
-        'password',
-        'role',
-        'status'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -36,6 +33,21 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+
+
+    public static function  getPermissionGroup()
+    {
+
+        $permission_group = DB::table('permissions')->select('group_name')->groupBy('group_name')->get();
+        return $permission_group;
+     
+
+    }
+
+
+
+
 
     /**
      * Get the attributes that should be cast.

@@ -26,7 +26,8 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('branch_name')->nullable();
             $table->string('created_by')->nullable();
-            $table->string('ref_id')->nullable();
+            $table->string('nid')->nullable();
+            $table->string('blood_group')->nullable();
             $table->timestamps();
         });
     }
