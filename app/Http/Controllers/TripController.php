@@ -66,6 +66,9 @@ class TripController extends Controller
                 'total_exp'      => $request->total_exp,
                 'trip_rent'          => $request->trip_rent,
                 'advance'            => $request->advance,
+                'd_day'            => $request->d_day,
+                'd_amount'            => $request->d_amount,
+                'd_total'            => $request->d_total,
                 'due_amount'         => $request->due_amount,
                 'ref_id'             => $request->ref_id,
                 'body_fare'          => $request->body_fare,
@@ -76,7 +79,12 @@ class TripController extends Controller
                 'police_cost'        => $request->police_cost,
                 'driver_adv'         => $request->driver_adv,
                 'chada'              => $request->chada,
+                'callan_cost'              => $request->callan_cost,
+                'others_cost'              => $request->others_cost,
                 'labor'        => $request->labor,
+                'vehicle_size'        => $request->vehicle_size,
+                'vehicle_category'        => $request->vehicle_category,
+
                 'status'        => "Pending",
             ]);
 
@@ -97,6 +105,9 @@ class TripController extends Controller
                     'feri_cost'          => $request->feri_cost,
                     'police_cost'        => $request->police_cost,
                     'chada'              => $request->chada,
+                    'branch_name'       => $request->branch_name,
+                    'callan_cost'              => $request->callan_cost,
+                    'others_cost'              => $request->others_cost,
                     'labor'        => $request->labor,
                     'total_exp'      => $request->total_exp,
                 ]);
@@ -118,15 +129,13 @@ class TripController extends Controller
                 ]);
             }
 
-
-
-
             // Insert into branch_ledgers
             Branch_Ledger::create([
                 'date'               => $request->date,
                 'unload_point'       => $request->unload_point,
                 'customer'           => $request->customer,
                 'trip_id'            => $trip->id,
+                'branch_name'       => $request->branch_name,
                 'status'             => $request->status,
                 'cash_out'      => $request->total_exp,
                 'created_by'         => $request->created_by,
@@ -195,6 +204,9 @@ class TripController extends Controller
                 'total_exp'          => $request->total_exp,
                 'trip_rent'          => $request->trip_rent,
                 'advance'            => $request->advance,
+                'd_day'            => $request->d_day,
+                'd_amount'            => $request->d_amount,
+                'd_total'            => $request->d_total,
                 'due_amount'         => $request->due_amount,
                 'ref_id'             => $request->ref_id,
                 'body_fare'          => $request->body_fare,
@@ -205,6 +217,9 @@ class TripController extends Controller
                 'police_cost'        => $request->police_cost,
                 'driver_adv'         => $request->driver_adv,
                 'chada'              => $request->chada,
+                'callan_cost'              => $request->callan_cost,
+                'others_cost'              => $request->others_cost,
+
                 'labor'              => $request->labor,
                 'status'        => $request->status,
             ]);
@@ -226,6 +241,9 @@ class TripController extends Controller
                         'feri_cost'          => $request->feri_cost,
                         'police_cost'        => $request->police_cost,
                         'chada'              => $request->chada,
+                        'callan_cost'              => $request->callan_cost,
+                        'others_cost'              => $request->others_cost,
+                        'fuel_cost'              => $request->fuel_cost,
                         'labor'              => $request->labor,
                         'total_exp'          => $request->total_exp,
                     ]
@@ -240,7 +258,7 @@ class TripController extends Controller
                         'unload_point' => $request->unload_point,
                         'customer'    => $request->customer,
                         'vehicle_no'  => $request->vehicle_no,
-                        'trip_rent'   => $request->trip_rent,
+                        'trip_rent'   => $request->total_exp,
                         'advance'    => $request->advance,
                         'due_amount'  => $request->due_amount,
                     ]
@@ -255,6 +273,7 @@ class TripController extends Controller
                     'unload_point' => $request->unload_point,
                     'customer'     => $request->customer,
                     'status'       => $request->status,
+                    'branch_name'       => $request->branch_name,
                     'cash_out'     => $request->total_exp,
                     'created_by'   => $request->created_by,
                 ]
@@ -332,10 +351,6 @@ class TripController extends Controller
             ], 500);
         }
     }
-
-
-
-
 
 
 

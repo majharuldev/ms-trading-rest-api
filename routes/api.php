@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\{Auth, Route};
 use App\Http\Controllers\API\Authentication\AuthController;
-use App\Http\Controllers\{RentController, AccountController, PaymentController, CustomerController, StockProductController, AttendanceController, AdvanceSalaryController, BranchLedgerController, CustomerLedgerController, DailyExpenseController, DriverController, DriverLedgerController, EmployeeController, HelperController, LeaveController, OfficeController, VehicleController, TripController, PartsController, PaymentRecivedController, PurchaseController, RoleController, StockOutProductController, SupplierLedgerController, SupplyController, VendorBillController, VendorController, VendorLedgerController};
+use App\Http\Controllers\{RentController, AccountController, PaymentController, CustomerController, StockProductController, AttendanceController, AdvanceSalaryController, BranchLedgerController, CustomerLedgerController, DailyExpenseController, DriverController, DriverLedgerController, EmployeeController, HelperController, LeaveController, OfficeController, VehicleController, TripController, PartsController, PaymentRecivedController, PriceRateController, PurchaseController, RoleController, StockOutProductController, SupplierLedgerController, SupplyController, VendorBillController, VendorController, VendorLedgerController};
 
 // Get Authenticated User
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
@@ -276,6 +276,16 @@ Route::prefix('vendorLedger')->controller(VendorLedgerController::class)->group(
 
 // helper
 Route::prefix('helper')->controller(HelperController::class)->group(function () {
+    Route::get('/list', 'index')->name('list');
+    Route::post('/create', 'store')->name('store');
+    Route::get('/{id}', 'show')->name('show');
+    Route::post('/update/{id}', 'update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('destroy');
+});
+
+
+// price rate
+Route::prefix('rate')->controller(PriceRateController::class)->group(function () {
     Route::get('/list', 'index')->name('list');
     Route::post('/create', 'store')->name('store');
     Route::get('/{id}', 'show')->name('show');

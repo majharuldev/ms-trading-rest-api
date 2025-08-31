@@ -44,6 +44,7 @@ class PaymentRecivedController extends Controller
                 'date'               => $request->date,
                 'payment_rec_id' => $payment_rec->id,
                 'customer'           => $request->customer_name,
+                 'branch_name' => $request->branch_name,
                 'cash_in'      => $request->amount,
                 'created_by'         => $request->created_by,
             ]);
@@ -110,6 +111,7 @@ class PaymentRecivedController extends Controller
                     'date'       => $request->date,
                     'customer'   => $request->customer_name,
                     'cash_in'    => $request->amount,
+                     'branch_name' => $request->branch_name,
                     'created_by' => $request->created_by,
                 ]);
 

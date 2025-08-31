@@ -40,7 +40,7 @@ class AccountController extends Controller
 
             // Insert into branch_ledgers
             Branch_Ledger::create([
-                 'date'        => $request->date,
+                'date'        => $request->date,
                 'accounts_id' => $account->id,
                 'branch_name' => $request->branch,
                 'cash_in'     => $request->amount,
@@ -78,56 +78,53 @@ class AccountController extends Controller
             'data' => $data
         ], 200);
     }
-   public function update(Request $request, $id)
-{
-    DB::beginTransaction();
+    public function update(Request $request, $id)
+    {
+        DB::beginTransaction();
 
-    try {
-        // Find the Account record
-        $account = Account::findOrFail($id);
+        try {
+            // Find the Account record
+            $account = Account::findOrFail($id);
 
-        // Update Account
-        $account->update([
-            'date'        => $request->date,
-            'branch'      => $request->branch,
-            'person_name' => $request->person_name,
-            'type'        => $request->type,
-            'amount'      => $request->amount,
-            'bank_name'   => $request->bank_name,
-            'remarks'     => $request->remarks,
-            'created_by'  => $request->created_by,
-           
-        ]);
-
-        // Update Branch_Ledger
-        Branch_Ledger::where('accounts_id', $account->id)
-            ->update([
+            // Update Account
+            $account->update([
                 'date'        => $request->date,
-                'branch_name' => $request->branch,
-                'cash_in'     => $request->amount,
+                'branch'      => $request->branch,
+                'person_name' => $request->person_name,
+                'type'        => $request->type,
+                'amount'      => $request->amount,
+                'bank_name'   => $request->bank_name,
+                'remarks'     => $request->remarks,
                 'created_by'  => $request->created_by,
+
             ]);
 
-        DB::commit();
+            // Update Branch_Ledger
+            Branch_Ledger::where('accounts_id', $account->id)
+                ->update([
+                    'date'        => $request->date,
+                    'branch_name' => $request->branch,
+                    'cash_in'     => $request->amount,
+                    'created_by'  => $request->created_by,
+                ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Updated successfully',
-            'data'    => $account
-        ], 200);
+            DB::commit();
 
-    } catch (\Exception $e) {
-        DB::rollBack();
+            return response()->json([
+                'success' => true,
+                'message' => 'Updated successfully',
+                'data'    => $account
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
 
-        return response()->json([
-            'success' => false,
-            'message' => 'Something went wrong',
-            'error'   => $e->getMessage()
-        ], 500);
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong',
+                'error'   => $e->getMessage()
+            ], 500);
+        }
     }
-}
-
-
 
     public function destroy($id)
     {
